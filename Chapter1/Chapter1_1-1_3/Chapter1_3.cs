@@ -10,7 +10,7 @@ class Chapter1_3
 {
     #region hanoi-original
 
-    // hanoi (original) - Higher Order Perl pp. 8
+    // hanoi (original) - Higher Order Perl p. 8
     static void Hanoi_Original(int n, char start, char end, char extra)
     {
         if (n == 1)
