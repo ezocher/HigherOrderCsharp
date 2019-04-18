@@ -1,9 +1,11 @@
 ﻿/* 
+ * https://github.com/ezocher/HigherOrderCsharp
+ * 
  * C# implementation of the code from Higher Order Perl by Mark Jason Dominus
  * https://hop.perl.plover.com/
- *
+ * 
  */
- 
+
 using System;
 
 class Chapter1_3
@@ -23,7 +25,7 @@ class Chapter1_3
         }
     }
 
-    public static void Demo_Original()
+    public static void Demo_Hanoi_Original()
     {
         Console.WriteLine("\n--------------- Chapter 1.3 Original ---------------");
         for (int i = 1; i <= 5; i++)
@@ -58,7 +60,7 @@ class Chapter1_3
     }
 
 
-    public static void Demo()
+    public static void Demo_Hanoi()
     {
         Console.WriteLine("\n--------------- Chapter 1.3 ---------------");
         for (int i = 1; i <= 5; i++)

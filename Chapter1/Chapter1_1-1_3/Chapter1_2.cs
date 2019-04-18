@@ -1,7 +1,9 @@
 ﻿/* 
+ * https://github.com/ezocher/HigherOrderCsharp
+ * 
  * C# implementation of the code from Higher Order Perl by Mark Jason Dominus
  * https://hop.perl.plover.com/
- *
+ * 
  */
 
 using System;
@@ -21,7 +23,7 @@ class Chapter1_2
         return Factorial(n - 1) * n;
     }
 
-    public static void Demo()
+    public static void Demo_Factorial()
     {
         Console.WriteLine("\n--------------- Chapter 1.2 ---------------");
         for (int i = 0; i <= 100; i++)

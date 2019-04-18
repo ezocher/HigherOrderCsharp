@@ -1,7 +1,9 @@
 ﻿/* 
+ * https://github.com/ezocher/HigherOrderCsharp
+ * 
  * C# implementation of the code from Higher Order Perl by Mark Jason Dominus
  * https://hop.perl.plover.com/
- *
+ * 
  */
 
 using System;
@@ -51,5 +53,5 @@ class Chapter1_5
         Console.WriteLine();
     }
 
-    // Shortcuts/Links: https://code.msdn.microsoft.com/windowsdesktop/Identifying-and-Resolving-ca0dfce8
+
 }

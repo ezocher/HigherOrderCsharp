@@ -1,7 +1,9 @@
 ﻿/* 
+ * https://github.com/ezocher/HigherOrderCsharp
+ * 
  * C# implementation of the code from Higher Order Perl by Mark Jason Dominus
  * https://hop.perl.plover.com/
- *
+ * 
  */
 
 using System;
@@ -21,7 +23,7 @@ class Chapter1_1
         return E + b.ToString();
     }
 
-    public static void Demo()
+    public static void Demo_Binary()
     {
         Console.WriteLine("\n--------------- Chapter 1.1 ---------------");
         int[] values = { 0, 1, 7, 11, 16, 37, 99, 170, 37*16, 32767 };
