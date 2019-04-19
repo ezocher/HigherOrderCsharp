@@ -17,9 +17,9 @@ class Chapter1_4
     // total-size - Higher Order Perl pp. 8-15
     public static long Total_Size(string top)
     {
-        long total = Size(top);
+        long total = PerlFileOp.Size(top);  // -s
 
-        if (Is_File(top)) return total;
+        if (PerlFileOp.IsFile(top)) return total;  // -f
 
         // There is not an equivalent to Perl's opendir/readir. The line below tries to read the files and directories 
         //  in directory "top" and will throw an exception if the directory with this name doesn't exist or has some 
@@ -46,25 +46,6 @@ class Chapter1_4
         return total;
     }
 
-    // Implement an equivalent of the Perl -s operator
-    public static long Size(string path)
-    {
-        FileInfo fi = new FileInfo(path);
-        if (fi.Exists)
-            return fi.Length;
-        else
-            return 0;
-    }
-
-    // Implement an equivalent of the Perl -f operator
-    public static bool Is_File(string path)
-    {
-        FileInfo fi = new FileInfo(path);
-        if (fi.Exists)
-            return !((fi.Attributes & FileAttributes.Directory) == FileAttributes.Directory);
-        else
-            return false;
-    }
 
 
 
