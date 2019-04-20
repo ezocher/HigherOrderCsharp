@@ -19,6 +19,8 @@ class Program
         Chapter1_4.Demo_Total_Size();
         Chapter1_5.Demo_Dir_Walk_Simple();
         Chapter1_5.Demo_Dir_Walk_CB();
+        Chapter1_5.Demo_Dir_Walk_Sizehash();
+        Chapter1_5.Demo_Dir_Walk_CB_Def();
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey(true);
