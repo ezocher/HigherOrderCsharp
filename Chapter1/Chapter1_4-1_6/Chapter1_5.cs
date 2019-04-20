@@ -57,11 +57,12 @@ class Chapter1_5
         string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonMusic);
         // Other directories you might want to try
         //  Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        //  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        //  Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
         Dir_Walk_Simple(path, Print_Dir);
         Console.WriteLine();
 
+        // dir-walk-simple called with lambdas - Higher Order Perl p. 19
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Simple w/ lambda ---------------");
         // Same as Print_Dir, but using an expression lambda
         Dir_Walk_Simple(path, (x) => Console.WriteLine(x));
@@ -76,7 +77,7 @@ class Chapter1_5
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Simple that displays Links/Shortcuts ---------------");
         // The version in the book displays dangling symbolic links
         //  This version instead displays all Shorcuts and the files/directories they point to and indicates whether they are good or broken/dangling Shortcuts
-        path = @"C:\Users";
+        path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         Dir_Walk_Simple(path, (x) =>
         {
             string target;
