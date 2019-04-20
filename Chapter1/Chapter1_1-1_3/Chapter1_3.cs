@@ -70,7 +70,7 @@ class Chapter1_3
             Console.WriteLine();
         }
     }
-    // We could also call Hanoi with  a statement lambda instead of calling Print_Instruction():
+    // We could also call Hanoi with an expression lambda instead of calling Print_Instruction():
     //      Hanoi(i, 'A', 'C', 'B', (x, from, to) => Console.WriteLine("Move disk #{0} from {1} to {2}", x, from, to));            
 
     #endregion hanoi

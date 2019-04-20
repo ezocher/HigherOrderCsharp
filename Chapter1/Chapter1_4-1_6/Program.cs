@@ -6,6 +6,10 @@
  * 
  */
 
+// .csproj NOTE: 
+//      This Project targets .NET Framework 4.7.2 because Shell32 COM interop (needed for file system shortcuts/links)
+//      is not yet available in .NET Core 2.1 
+
 using System;
 
 class Program
@@ -13,13 +17,11 @@ class Program
     static void Main(string[] args)
     {
         Chapter1_4.Demo_Total_Size();
-        Chapter1_5.Demo_();
+        Chapter1_5.Demo_Dir_Walk_Simple();
+
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey(true);
     }
 }
 
 
-/*
- * Shortcuts/Links:
- *      https://code.msdn.microsoft.com/windowsdesktop/Identifying-and-Resolving-ca0dfce8
- *
- */

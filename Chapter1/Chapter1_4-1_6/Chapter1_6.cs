@@ -12,27 +12,6 @@ using System.IO;
 class Chapter1_6
 {
 
-    // total-size - Higher Order Perl pp. 8-15
-
-    // Implement an equivalent of the Perl -s operator
-    public static long Size(string path)
-    {
-        FileInfo fi = new FileInfo(path);
-        if (fi.Exists)
-            return fi.Length;
-        else
-            return 0;
-    }
-
-    // Implement an equivalent of the Perl -f operator
-    public static bool Is_File(string path)
-    {
-        FileInfo fi = new FileInfo(path);
-        if (fi.Exists)
-            return !((fi.Attributes & FileAttributes.Directory) == FileAttributes.Directory);
-        else
-            return false;
-    }
 
     public static void Demo_()
     {
