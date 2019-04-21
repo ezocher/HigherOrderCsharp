@@ -124,10 +124,9 @@ class Chapter1_5
 
     public static Object Dir(string dir, List<Object> subdirs)
     {
-        // TODO: CHeck for latest advice about Hashtable vs. generics
-        Hashtable new_hash = new Hashtable();
-        foreach (List<Object> al in subdirs)
-            new_hash.Add(al[0], al[1]);
+        Dictionary<string, Object> new_hash = new Dictionary<string, Object>();
+        foreach (List<Object> o in subdirs)
+            new_hash.Add((String)o[0], o[1]);
         List<Object> result = new List<Object>();
         result.Add(Path.GetFileName(dir));
         result.Add(new_hash);
