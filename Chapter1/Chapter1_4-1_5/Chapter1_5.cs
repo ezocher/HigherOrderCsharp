@@ -7,7 +7,6 @@
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -72,7 +71,9 @@ class Chapter1_5
                 return null;
             }
 
-            // Using List<Object> vs. ArrayList per https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8#remarks
+            // Using List<Object> vs. ArrayList per 
+            //      https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8#remarks
+            //      https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md
             List<Object> results = new List<Object>();       
             foreach (FileSystemInfo file in filesAndDirs)
             {
@@ -124,6 +125,8 @@ class Chapter1_5
 
     public static Object Dir(string dir, List<Object> subdirs)
     {
+        // Changed from Hashtable to Dictionary<string, Object> because of Microsoft recommendation:
+        //      https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md
         Dictionary<string, Object> new_hash = new Dictionary<string, Object>();
         foreach (List<Object> o in subdirs)
             new_hash.Add((String)o[0], o[1]);
