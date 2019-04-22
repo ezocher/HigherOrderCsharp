@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chapter1_6.cs" />
+    <Compile Include="Chapter1_6_DW.cs" />
+    <Compile Include="Chapter1_6_DWAccumulator.cs" />
     <Compile Include="DirectoryWalker.cs" />
+    <Compile Include="DirectoryWalkerAccumulator.cs" />
     <Compile Include="PerlFileOp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,6 +14,14 @@ class Program
     {
         TotalSize.Demo();
 
+        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        // Other directories you might want to try
+        //      Environment.GetFolderPath(Environment.SpecialFolder.CommonMusic);
+        //      Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        //      Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
+        PrintAll.Demo(path);
+
         Console.WriteLine("Press any key to exit");
         Console.ReadKey(true);
     }

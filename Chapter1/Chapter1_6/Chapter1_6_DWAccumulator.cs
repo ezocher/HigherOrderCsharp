@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-public class TotalSize : DirectoryWalker
+public class TotalSize : DirectoryWalkerAccumulator
 {
     public override object File(string path)
     {
@@ -44,7 +44,7 @@ public class TotalSize : DirectoryWalker
         TotalSize ts = new TotalSize();
         foreach (string path in paths)
         {
-            Console.WriteLine("Size of {0} = {1:N0} bytes", path, ts.Dir_Walk(path));
+            Console.WriteLine("Size of {0} = {1:N0} bytes", path, ts.Dir_Walk_Accumulator(path));
         }
         Console.WriteLine();
     }
