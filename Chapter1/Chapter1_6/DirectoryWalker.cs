@@ -15,7 +15,7 @@ public abstract class DirectoryWalker
     {
         FileOrDirectory(top);
 
-        if (PerlFileOp.IsDir(top)) // -d
+        if (PerlFileOps.IsDir(top)) // -d
         {
             FileSystemInfo[] filesAndDirs;
             try

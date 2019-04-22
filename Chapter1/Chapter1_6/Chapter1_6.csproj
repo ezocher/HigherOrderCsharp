@@ -47,7 +47,7 @@
     <Compile Include="Chapter1_6_DWAccumulator.cs" />
     <Compile Include="DirectoryWalker.cs" />
     <Compile Include="DirectoryWalkerAccumulator.cs" />
-    <Compile Include="PerlFileOp.cs" />
+    <Compile Include="PerlFileOps.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

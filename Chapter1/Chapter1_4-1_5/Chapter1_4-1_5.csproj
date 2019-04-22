@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Chapter1_4.cs" />
     <Compile Include="Chapter1_5.cs" />
-    <Compile Include="PerlFileOp.cs" />
+    <Compile Include="PerlFileOps.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

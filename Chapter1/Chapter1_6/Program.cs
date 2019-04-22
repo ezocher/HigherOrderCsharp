@@ -36,10 +36,12 @@ class Program
 
         PrintAll.Demo(path);
         PrintWithSizes.Demo(path);
-        PrintDangles.Demo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)); // UserProfile is a likely place to have many dangling links/shortcuts and will probably take a long time to run
+        PrintDangles.Demo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)); // UserProfile is a likely place to have many dangling links/shortcuts and will probably take a long time to run
         PrintSubdirSize.Demo(path);
         Sizehash.Demo(path);            // Set a breakpoint inside of Sizehash.Demo() and use the debugger if you want to explore the tree of Lists/Dictionaries that this creates
+        ListOfAllPlainFiles.Demo(path);
 
+        // A new sample that wasn't in the book that I just wanted to try
         string[] photosFileExtensions = {
             ".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi",   // JPEG
             ".jp2", ".j2k",  ".jpf", ".jpx", ".jpm",  ".mj2",   // JPEG 2000
@@ -52,7 +54,7 @@ class Program
             ".srf", ".srw", ".tif", ".x3f"
         };
 
-        PrintFilesFilteredByExtension.Demo(path, photosFileExtensions);
+        PrintFilesFilteredByExtension.Demo(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), photosFileExtensions);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey(true);

@@ -10,7 +10,7 @@ using System.IO;
 
 
 // Implementation of Perl file operators
-class PerlFileOp
+class PerlFileOps
 {
     // Implement an equivalent of the Perl -s file operator (Size of a file or directory)
     public static long Size(string path)

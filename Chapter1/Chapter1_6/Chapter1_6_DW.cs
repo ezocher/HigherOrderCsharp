@@ -36,7 +36,7 @@ public class PrintWithSizes : DirectoryWalker
     {
         // Format specifier N0 displays numbers with comma seperators
         //   Use a width of 13 to accomodate sizes up to about 10 Gigabytes, e.g. 9,999,999,999
-        Console.WriteLine("{0,13:N0} {1}", PerlFileOp.Size(path), path);
+        Console.WriteLine("{0,13:N0} {1}", PerlFileOps.Size(path), path);
     }
 
 
@@ -56,7 +56,7 @@ public class PrintDangles : DirectoryWalker
     public override void FileOrDirectory(string path)
     {
         string target;
-        if (PerlFileOp.Link(path, out target) && !PerlFileOp.Exists(target))    // -l && -e
+        if (PerlFileOps.Link(path, out target) && !PerlFileOps.Exists(target))    // -l && -e
             Console.WriteLine("'{0}' => '{1}'", path, target);
 
     }
@@ -76,7 +76,7 @@ public class PrintDangles : DirectoryWalker
 // This one is not in the book, but I wanted to do it
 // This class is initialized with a list of file extensions and then uses the DirectoryWalker to print all files with one of those extensions
 //
-// I am surprised that this only took 4 new lines of code
+// I am surprised that this only required 4 new lines of code and one new property
 public class PrintFilesFilteredByExtension : DirectoryWalker
 {
     private readonly HashSet<string> extensions = new HashSet<string>();
@@ -89,7 +89,8 @@ public class PrintFilesFilteredByExtension : DirectoryWalker
 
     public override void FileOrDirectory(string path)
     {
-        if (extensions.Contains(Path.GetExtension(path).ToLower()))
+        // Need to check that this is a file in case we have any wacky directory names like 'dirdir.jpg'
+        if ( (PerlFileOps.IsFile(path)) && (extensions.Contains(Path.GetExtension(path).ToLower())) )
             Console.WriteLine(path);
     }
 

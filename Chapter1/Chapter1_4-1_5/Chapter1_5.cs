@@ -19,7 +19,7 @@ class Chapter1_5
     {
         code(top);
 
-        if (PerlFileOp.IsDir(top)) // -d
+        if (PerlFileOps.IsDir(top)) // -d
         {
             // There is not an equivalent to Perl's opendir/readir. The line below tries to read the files and directories 
             //  in directory "top" and will throw an exception if the directory with this name doesn't exist or has some 
@@ -55,7 +55,7 @@ class Chapter1_5
     // dir-walk-cb - Higher Order Perl pp. 21-22
     public static Object Dir_Walk_CB(string top, FileFunc fileFunc, DirFunc dirFunc)
     {
-        if (PerlFileOp.IsDir(top)) // -d
+        if (PerlFileOps.IsDir(top)) // -d
         {
             // There is not an equivalent to Perl's opendir/readir. The line below tries to read the files and directories 
             //  in directory "top" and will throw an exception if the directory with this name doesn't exist or has some 
@@ -93,7 +93,7 @@ class Chapter1_5
 
     public static Object File_Size(string path)
     {
-        return PerlFileOp.Size(path);
+        return PerlFileOps.Size(path);
     }
 
     public static Object Dir_Size(string dir, List<Object> results)
@@ -119,7 +119,7 @@ class Chapter1_5
     {
         List<Object> al = new List<Object>();
         al.Add(Path.GetFileName(file));   // We don't need a sub short{} equivalent since we have Path.GetFileName()
-        al.Add(PerlFileOp.Size(file));    
+        al.Add(PerlFileOps.Size(file));    
         return al;
     }
 
@@ -152,7 +152,7 @@ class Chapter1_5
     public static Object Dangles(string file)
     {
         string target;
-        if (PerlFileOp.Link(file, out target) && !PerlFileOp.Exists(target))    // -l && -e
+        if (PerlFileOps.Link(file, out target) && !PerlFileOps.Exists(target))    // -l && -e
             Console.WriteLine("'{0}' => '{1}'", file, target);
         return null;
     }
@@ -160,7 +160,7 @@ class Chapter1_5
     // dir-walk-cb-def - Higher Order Perl p. 24
     public static Object Dir_Walk_CB_Def(string top, FileFunc fileFunc, DirFunc dirFunc)
     {
-        if (PerlFileOp.IsDir(top)) // -d
+        if (PerlFileOps.IsDir(top)) // -d
         {
             // There is not an equivalent to Perl's opendir/readir. The line below tries to read the files and directories 
             //  in directory "top" and will throw an exception if the directory with this name doesn't exist or has some 
@@ -208,14 +208,14 @@ class Chapter1_5
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Simple w/ sizes ---------------");
         // Format specifier N0 displays numbers with comma seperators (different than in the book, but easier to read)
         //   Use a width of 13 to accomodate sizes up to about 10 Gigabytes, e.g. 9,999,999,999
-        Dir_Walk_Simple(path, (x) => Console.WriteLine("{0,13:N0} {1}", PerlFileOp.Size(x), x));
+        Dir_Walk_Simple(path, (x) => Console.WriteLine("{0,13:N0} {1}", PerlFileOps.Size(x), x));
         Console.WriteLine();
 
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Simple that displays Broken Links/Shortcuts ---------------");
         Dir_Walk_Simple(path, (x) =>
         {
             string target;
-            if (PerlFileOp.Link(x, out target) && !PerlFileOp.Exists(target))    // -l && -e
+            if (PerlFileOps.Link(x, out target) && !PerlFileOps.Exists(target))    // -l && -e
                 Console.WriteLine("'{0}' => '{1}'", x, target);
         });
         Console.WriteLine();
@@ -223,7 +223,7 @@ class Chapter1_5
         // dir-walk-simple used with an accumulator in the lambda - Higher Order Perl p. 20
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Simple w/ total size ---------------");
         long total = 0;
-        Dir_Walk_Simple(path, (x) => total += PerlFileOp.Size(x));
+        Dir_Walk_Simple(path, (x) => total += PerlFileOps.Size(x));
         Console.WriteLine("Total size of '{0}' is {1:N0}", path, total);
         Console.WriteLine();
     }

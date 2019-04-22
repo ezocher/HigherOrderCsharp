@@ -15,7 +15,7 @@ public abstract class DirectoryWalkerAccumulator
 {
     public Object Dir_Walk_Accumulator(string top)
     {
-        if (PerlFileOp.IsDir(top)) // -d
+        if (PerlFileOps.IsDir(top)) // -d
         {
             FileSystemInfo[] filesAndDirs;
             try

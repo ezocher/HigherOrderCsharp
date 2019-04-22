@@ -20,7 +20,7 @@ If you want to follow along you can download the book for free from [this page](
 - [x] Chapter 1, Sections 1.1 - 1.3
 - [x] Section 1.4
 - [x] Section 1.5
-- [ ] Section 1.6
+- [x] Section 1.6
 - [ ] Section 1.7
 - [ ] Section 1.8
 - [ ] Chapter 2, Section 2.1
