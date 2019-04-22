@@ -11,6 +11,7 @@ If you want to follow along you can download the book for free from [this page](
 
 ## Project Structure
 * There is one folder per book chapter containing one VS solution file per chapter, e.g. the Chapter1 folder contains Chapter1.sln
+* Most of the chapter folders also contain a file of notes for that chapter, e.g. Chapter1_Notes.md
 * Each chapter folder contains several folders, with from one to three book sections per folder and one .csproj for each group of sections, e.g. the Chapter1_1-1_3 folder contains Chapter1_1-1_3.csproj
 * There is one class in one file for each book section, e.g. Chapter1_4.cs contains class Chapter1_4
 * There are Demo_xxx() methods in each class to demonstrate the code from each section
