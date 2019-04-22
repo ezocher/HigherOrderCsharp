@@ -6,11 +6,15 @@
  * 
  */
 
-using System.Collections.Generic;
-using System.IO;
+using System;
+
 class Program
 {
     static void Main(string[] args)
     {
+        TotalSize.Demo();
+
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey(true);
     }
 }

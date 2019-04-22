@@ -153,7 +153,7 @@ class Chapter1_5
     {
         string target;
         if (PerlFileOp.Link(file, out target) && !PerlFileOp.Exists(target))    // -l && -e
-            Console.WriteLine("\"{0}\" => \"{1}\"", file, target);
+            Console.WriteLine("'{0}' => '{1}'", file, target);
         return null;
     }
 
@@ -216,7 +216,7 @@ class Chapter1_5
         {
             string target;
             if (PerlFileOp.Link(x, out target) && !PerlFileOp.Exists(target))    // -l && -e
-                Console.WriteLine("\"{0}\" => \"{1}\"", x, target);
+                Console.WriteLine("'{0}' => '{1}'", x, target);
         });
         Console.WriteLine();
 
@@ -224,7 +224,7 @@ class Chapter1_5
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Simple w/ total size ---------------");
         long total = 0;
         Dir_Walk_Simple(path, (x) => total += PerlFileOp.Size(x));
-        Console.WriteLine("Total size of \"{0}\" is {1:N0}", path, total);
+        Console.WriteLine("Total size of '{0}' is {1:N0}", path, total);
         Console.WriteLine();
     }
 
@@ -232,12 +232,12 @@ class Chapter1_5
     {
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_CB ---------------");
         long total = (long)Dir_Walk_CB(path, File_Size, Dir_Size);
-        Console.WriteLine("Total size of \"{0}\" is {1:N0}", path, total);
+        Console.WriteLine("Total size of '{0}' is {1:N0}", path, total);
         Console.WriteLine();
 
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_CB with usage per subdirectory (like du) ---------------");
         total = (long)Dir_Walk_CB(path, File_Size, Dir_Size_DU);
-        Console.WriteLine("Total size of \"{0}\" is {1:N0}", path, total);
+        Console.WriteLine("Total size of '{0}' is {1:N0}", path, total);
         Console.WriteLine();
     }
 
