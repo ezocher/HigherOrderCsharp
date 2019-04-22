@@ -76,38 +76,43 @@ public class PrintSubdirSize : DirectoryWalkerAccumulator
     }
 }
 
-
-// TODO NEXT: re-implement sizehash from page 23
-/*
-    public static Object File(string file)
+// Duplicates functionality of sizehash on page 23
+public class Sizehash : DirectoryWalkerAccumulator
+{
+    public override object File(string path)
     {
-        List<Object> al = new List<Object>();
-        al.Add(Path.GetFileName(file));   // We don't need a sub short{} equivalent since we have Path.GetFileName()
-        al.Add(PerlFileOp.Size(file));    
-        return al;
+        List<Object> l = new List<Object>
+        {
+            Path.GetFileName(path),   // We don't need a sub short{} equivalent since we have Path.GetFileName()
+            PerlFileOp.Size(path)
+        };
+        return l;
     }
 
-    public static Object Dir(string dir, List<Object> subdirs)
+    public override object Directory(string path, List<object> results)
     {
-        // Changed from Hashtable to Dictionary<string, Object> because of Microsoft recommendation:
-        //      https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md
         Dictionary<string, Object> new_hash = new Dictionary<string, Object>();
-        foreach (List<Object> o in subdirs)
-            new_hash.Add((String)o[0], o[1]);
-        List<Object> result = new List<Object>();
-        result.Add(Path.GetFileName(dir));
-        result.Add(new_hash);
+        foreach (List<Object> o in results)
+            new_hash.Add((string)o[0], o[1]);
+        List<Object> result = new List<Object>
+        {
+            Path.GetFileName(path),
+            new_hash
+        };
         return result;
     }
 
-
-        public static void Demo_Dir_Walk_Sizehash(string path)
+    public static void Demo(string path)
     {
-        Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Sizehash  ---------------");
-        List<Object> a = (List<Object>)Dir_Walk_CB(path, File, Dir);
+        Console.WriteLine("\n--------------- Chapter 1.6 Sizehash ---------------");
+
+        Sizehash sh = new Sizehash();
+        List<Object> a = (List<Object>)sh.Dir_Walk_Accumulator(path);
         Console.WriteLine("Top directory = {0}", (string)a[0]);
         Console.WriteLine();
+    }
+}
 
- */
 
-    // TODO: Plain files list from page 24
+
+// TODO: Plain files list from page 24

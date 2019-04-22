@@ -38,6 +38,7 @@ class Program
         PrintWithSizes.Demo(path);
         PrintDangles.Demo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)); // UserProfile is a likely place to have many dangling links/shortcuts and will probably take a long time to run
         PrintSubdirSize.Demo(path);
+        Sizehash.Demo(path);            // Set a breakpoint inside of Sizehash.Demo() and use the debugger if you want to explore the tree of Lists/Dictionaries that this creates
 
         string[] photosFileExtensions = {
             ".jpg", ".jpeg", ".jpe", ".jif", ".jfif", ".jfi",   // JPEG
