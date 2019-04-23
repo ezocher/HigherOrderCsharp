@@ -13,7 +13,7 @@ class Chapter1_2
 {
     // If we try using int or long they will silently overflow pretty quickly (see output from Demo() below to see how quickly)
     //
-    // System.Numerics.BigInteger gives us arbitrary size integers, which will work much better than a Perl scalar (Perl uses 
+    // System.Numerics.BigInteger gives us arbitrary size integers, which will work better than a Perl scalar (Perl uses 
     //  double-precision floating point to represent all numbers)
 
     // factorial - Higher Order Perl p. 4
@@ -23,10 +23,11 @@ class Chapter1_2
         return Factorial(n - 1) * n;
     }
 
+    private const int maxFactorialToDemo = 100;
     public static void Demo_Factorial()
     {
         Console.WriteLine("\n--------------- Chapter 1.2 ---------------");
-        for (int i = 0; i <= 100; i++)
+        for (int i = 0; i <= maxFactorialToDemo; i++)
             Console.WriteLine("{0}! = {1:N0}", i, Factorial(i));
 
         // int silently overflows at 13!

@@ -53,15 +53,15 @@ public class PrintSubdirSize : DirectoryWalkerAccumulator
         return PerlFileOps.Size(path);
     }
 
+    private const string DirOrFileSizeMaxWrite = "99,999,999,999";       // Dirs or files up to almost 100 GB
+    private static readonly string DirOrFileSizeFormat = "{0," + DirOrFileSizeMaxWrite.Length + ":N0} {1}";
     public override object Directory(string path, List<object> results)
     {
         long total = 0;
         foreach (long size in results)
             total += size;
 
-        // Format specifier N0 displays numbers with comma seperators
-        //   Use a width of 13 to accomodate sizes up to about 10 Gigabytes, e.g. 9,999,999,999
-        Console.WriteLine("{0,13:N0} {1}", total, path);
+        Console.WriteLine(DirOrFileSizeFormat, total, path);
 
         return total;
     }
@@ -81,7 +81,7 @@ public class Sizehash : DirectoryWalkerAccumulator
 {
     public override object File(string path)
     {
-        List<Object> l = new List<Object>
+        List<object> l = new List<object>
         {
             Path.GetFileName(path),   // We don't need a sub short{} equivalent since we have Path.GetFileName()
             PerlFileOps.Size(path)
@@ -91,10 +91,10 @@ public class Sizehash : DirectoryWalkerAccumulator
 
     public override object Directory(string path, List<object> results)
     {
-        Dictionary<string, Object> new_hash = new Dictionary<string, Object>();
-        foreach (List<Object> o in results)
+        Dictionary<string, object> new_hash = new Dictionary<string, object>();
+        foreach (List<object> o in results)
             new_hash.Add((string)o[0], o[1]);
-        List<Object> result = new List<Object>
+        List<object> result = new List<object>
         {
             Path.GetFileName(path),
             new_hash
@@ -107,7 +107,7 @@ public class Sizehash : DirectoryWalkerAccumulator
         Console.WriteLine("\n--------------- Chapter 1.6 Sizehash ---------------");
 
         Sizehash sh = new Sizehash();
-        List<Object> a = (List<Object>)sh.Dir_Walk_Accumulator(path);
+        List<object> a = (List<object>)sh.Dir_Walk_Accumulator(path);
         Console.WriteLine("Top directory = {0}", (string)a[0]);
         Console.WriteLine();
     }
@@ -123,21 +123,21 @@ public class ListOfAllPlainFiles : DirectoryWalkerAccumulator
 
     public override object Directory(string path, List<object> results)
     {
-        // result is a List<Object> that contains a string (with the filename) for each file in the directory and a 
-        //      List<Object> of strings of filenames for each directory in the directory
-        // We need to explicitly flatten these into a single List<Object> of strings to pass up to our parent directory
+        // result is a List<object> that contains a string (with the filename) for each file in the directory and a 
+        //      List<object> of strings of filenames for each directory in the directory
+        // We need to explicitly flatten these into a single List<object> of strings to pass up to our parent directory
         //      since C# doesn't have Perl's parameter stack manipulation and implicit array insertion
         int length = results.Count;
         int i = 0;
         for (int count = 1; count <= length; count++)
         {
-            Object o = results[i];
-            if (o is List<Object>)
+            object o = results[i];
+            if (o is List<object>)
             {
                 // Insert list of strings into main list
                 results.RemoveAt(i);
-                results.InsertRange(i, ((List<Object>)o));
-                i += ((List<Object>)o).Count;
+                results.InsertRange(i, ((List<object>)o));
+                i += ((List<object>)o).Count;
             }
             else
             {
@@ -152,7 +152,7 @@ public class ListOfAllPlainFiles : DirectoryWalkerAccumulator
         Console.WriteLine("\n--------------- Chapter 1.6 ListOfAllPlainFIles ---------------");
 
         ListOfAllPlainFiles lapf = new ListOfAllPlainFiles();
-        List<Object> allPlainFiles = (List<Object>)lapf.Dir_Walk_Accumulator(path);
+        List<object> allPlainFiles = (List<object>)lapf.Dir_Walk_Accumulator(path);
         Console.WriteLine("Number of files = {0}", allPlainFiles.Count);
         foreach (string file in allPlainFiles)
             Console.WriteLine(file);

@@ -20,10 +20,11 @@ class Chapter1_2_1
         return Factorial_Broken(n - 1) * n;
     }
 
+    private const int maxFactorialToDemo = 10;
     public static void Demo_Factorial_Broken()
     {
         Console.WriteLine("\n--------------- Chapter 1.2.1 ---------------");
-        for (int i = 0; i <= 10; i++)
+        for (int i = 0; i <= maxFactorialToDemo; i++)
             Console.WriteLine("{0}! = {1:N0}", i, Factorial_Broken(i));
     }
 }

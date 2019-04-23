@@ -26,8 +26,8 @@ class Chapter1_1
     public static void Demo_Binary()
     {
         Console.WriteLine("\n--------------- Chapter 1.1 ---------------");
-        int[] values = { 0, 1, 7, 11, 16, 37, 99, 170, 37*16, 32767 };
-        foreach (int v in values)
+        int[] demoValues = { 0, 1, 7, 11, 16, 37, 99, 170, 37*16, 32767 };
+        foreach (int v in demoValues)
             Console.WriteLine("{0} decimal = {0:X} hexadecimal = {1} binary", v, Binary(v));
     }
 }

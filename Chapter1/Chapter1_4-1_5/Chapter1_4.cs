@@ -52,14 +52,14 @@ class Chapter1_4
     public static void Demo_Total_Size()
     {
         Console.WriteLine("\n--------------- Chapter 1.4 Total_Size ---------------");
-        string[] paths = {
+        string[] pathsToDemo = {
             @"c:\nosuchfileexists",
             @"C:\Temp\test.txt",
             Environment.GetFolderPath(Environment.SpecialFolder.CommonMusic),
             Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)};
 
-        foreach (string path in paths)
+        foreach (string path in pathsToDemo)
         {
             Console.WriteLine("Size of {0} = {1:N0} bytes", path, Total_Size(path));
         }

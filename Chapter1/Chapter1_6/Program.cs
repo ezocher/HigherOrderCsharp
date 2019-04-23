@@ -6,6 +6,10 @@
  * 
  */
 
+// .csproj NOTE: 
+//      This Project targets .NET Framework 4.7.2 because Shell32 COM interop (needed for file system shortcuts/links)
+//      is not yet available in .NET Core 2.1 
+
 using System;
 
 class Program
@@ -24,7 +28,7 @@ class Program
         /*
          * The Demo()s below all take one path - some of them are long running or produce a lot of output depending on your numbers of files
          * 
-         */  
+         */
 
         string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
         // Other directories you might want to try

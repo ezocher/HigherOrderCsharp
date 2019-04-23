@@ -13,7 +13,7 @@ using System.IO;
 
 public abstract class DirectoryWalkerAccumulator
 {
-    public Object Dir_Walk_Accumulator(string top)
+    public object Dir_Walk_Accumulator(string top)
     {
         if (PerlFileOps.IsDir(top)) // -d
         {
@@ -28,10 +28,10 @@ public abstract class DirectoryWalkerAccumulator
                 return null;
             }
 
-            List<Object> results = new List<Object>();
+            List<object> results = new List<object>();
             foreach (FileSystemInfo file in filesAndDirs)
             {
-                Object r = Dir_Walk_Accumulator(file.FullName);
+                object r = Dir_Walk_Accumulator(file.FullName);
                 if (r != null)
                     results.Add(r);
             }
@@ -43,7 +43,7 @@ public abstract class DirectoryWalkerAccumulator
         }
     }
 
-    public abstract Object File(string path);
+    public abstract object File(string path);
 
-    public abstract Object Directory(string path, List<Object> results);
+    public abstract object Directory(string path, List<object> results);
 }

@@ -25,10 +25,11 @@ class Chapter1_3
         }
     }
 
+    private const int maxNumberOfDiscsToDemo = 5;
     public static void Demo_Hanoi_Original()
     {
         Console.WriteLine("\n--------------- Chapter 1.3 Original ---------------");
-        for (int i = 1; i <= 5; i++)
+        for (int i = 1; i <= maxNumberOfDiscsToDemo; i++)
         {
             Console.WriteLine("Number of discs = {0}", i);
             Hanoi_Original(i, 'A', 'C', 'B');
@@ -63,7 +64,7 @@ class Chapter1_3
     public static void Demo_Hanoi()
     {
         Console.WriteLine("\n--------------- Chapter 1.3 ---------------");
-        for (int i = 1; i <= 5; i++)
+        for (int i = 1; i <= maxNumberOfDiscsToDemo; i++)
         {
             Console.WriteLine("Number of discs = {0}", i);
             Hanoi(i, 'A', 'C', 'B', Print_Instruction);
@@ -102,9 +103,9 @@ class Chapter1_3
     public static void Demo_Check_Move()
     {
         Console.WriteLine("\n--------------- Chapter 1.3 with Check_Move ---------------");
-        int i = 3;  // Implementation in the book is for three disks only because of fixed size position array
-        Console.WriteLine("Number of discs = {0}", i);
-        Hanoi(i, 'A', 'C', 'B', Check_Move);
+        const int numberOfDiscs = 3;  // Implementation in the book is for three disks only because of fixed size position array
+        Console.WriteLine("Number of discs = {0}", numberOfDiscs);
+        Hanoi(numberOfDiscs, 'A', 'C', 'B', Check_Move);
         Console.WriteLine();
     }
     #endregion check-move

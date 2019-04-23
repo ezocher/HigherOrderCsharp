@@ -49,11 +49,11 @@ class Chapter1_5
         Console.WriteLine(path);
     }
 
-    public delegate Object FileFunc(string filePath);
-    public delegate Object DirFunc(string dirPath, List<Object> results);
+    public delegate object FileFunc(string filePath);
+    public delegate object DirFunc(string dirPath, List<object> results);
 
     // dir-walk-cb - Higher Order Perl pp. 21-22
-    public static Object Dir_Walk_CB(string top, FileFunc fileFunc, DirFunc dirFunc)
+    public static object Dir_Walk_CB(string top, FileFunc fileFunc, DirFunc dirFunc)
     {
         if (PerlFileOps.IsDir(top)) // -d
         {
@@ -71,15 +71,15 @@ class Chapter1_5
                 return null;
             }
 
-            // Using List<Object> vs. ArrayList per 
+            // Using List<object> vs. ArrayList, references: 
             //      https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8#remarks
             //      https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md
-            List<Object> results = new List<Object>();       
+            List<object> results = new List<object>();       
             foreach (FileSystemInfo file in filesAndDirs)
             {
                 // System.IO doesn't return aliases like "." or ".." for any GetXXX calls
                 //  so we don't need code to exclude them
-                Object r = Dir_Walk_CB(file.FullName, fileFunc, dirFunc);
+                object r = Dir_Walk_CB(file.FullName, fileFunc, dirFunc);
                 if (r != null)
                     results.Add(r);
             }
@@ -91,12 +91,12 @@ class Chapter1_5
         }
     }
 
-    public static Object File_Size(string path)
+    public static object File_Size(string path)
     {
         return PerlFileOps.Size(path);
     }
 
-    public static Object Dir_Size(string dir, List<Object> results)
+    public static object Dir_Size(string dir, List<object> results)
     {
         long total = 0;
         foreach (long n in results)
@@ -104,61 +104,63 @@ class Chapter1_5
         return total;
     }
 
-    public static Object Dir_Size_DU(string dir, List<Object> results)
+    private const string DirOrFileSizeMaxWrite = "99,999,999,999";       // Dirs or files up to almost 100 GB
+    private static readonly string DirOrFileSizeFormat = "{0," + DirOrFileSizeMaxWrite.Length + ":N0} {1}";
+    public static object Dir_Size_DU(string dir, List<object> results)
     {
         long total = 0;
         foreach (long n in results)
             total += n;
-        Console.WriteLine("{0,13:N0} {1}", total, dir);
+        Console.WriteLine(DirOrFileSizeFormat, total, dir);
         return total;
     }
-
 
     // dir-walk-sizehash - Higher Order Perl pp. 23-24
-    public static Object File(string file)
+    public static object File(string file)
     {
-        List<Object> al = new List<Object>();
-        al.Add(Path.GetFileName(file));   // We don't need a sub short{} equivalent since we have Path.GetFileName()
-        al.Add(PerlFileOps.Size(file));    
+        List<object> al = new List<object>
+        {
+            Path.GetFileName(file),   // We don't need a sub short{} equivalent since we have Path.GetFileName()
+            PerlFileOps.Size(file)
+        };
         return al;
     }
 
-    public static Object Dir(string dir, List<Object> subdirs)
+    public static object Dir(string dir, List<object> subdirs)
     {
-        // Changed from Hashtable to Dictionary<string, Object> because of Microsoft recommendation:
+        // Changed from Hashtable to Dictionary<string, object> because of Microsoft recommendation:
         //      https://github.com/dotnet/platform-compat/blob/master/docs/DE0006.md
-        Dictionary<string, Object> new_hash = new Dictionary<string, Object>();
-        foreach (List<Object> o in subdirs)
-            new_hash.Add((String)o[0], o[1]);
-        List<Object> result = new List<Object>();
+        Dictionary<string, object> new_hash = new Dictionary<string, object>();
+        foreach (List<object> o in subdirs)
+            new_hash.Add((string)o[0], o[1]);
+        List<object> result = new List<object>();
         result.Add(Path.GetFileName(dir));
         result.Add(new_hash);
         return result;
     }
 
     // for the print_filename exmple we need to create two methods since the FileFunc and DirFunc have different numbers of parameters
-    public static Object Print_Filename(string name)
+    public static object Print_Filename(string name)
     {
         Console.WriteLine(name);
         return null;
     }
 
-    public static Object Print_Dirname(string name, List<Object> empty)
+    public static object Print_Dirname(string name, List<object> empty)
     {
         return Print_Filename(name);
     }
 
     // dangles example
-    public static Object Dangles(string file)
+    public static object Dangles(string file)
     {
-        string target;
-        if (PerlFileOps.Link(file, out target) && !PerlFileOps.Exists(target))    // -l && -e
+        if (PerlFileOps.Link(file, out string target) && !PerlFileOps.Exists(target))    // -l && -e
             Console.WriteLine("'{0}' => '{1}'", file, target);
         return null;
     }
 
     // dir-walk-cb-def - Higher Order Perl p. 24
-    public static Object Dir_Walk_CB_Def(string top, FileFunc fileFunc, DirFunc dirFunc)
+    public static object Dir_Walk_CB_Def(string top, FileFunc fileFunc, DirFunc dirFunc)
     {
         if (PerlFileOps.IsDir(top)) // -d
         {
@@ -176,12 +178,12 @@ class Chapter1_5
                 return null;
             }
 
-            List<Object> results = new List<Object>();
+            List<object> results = new List<object>();
             foreach (FileSystemInfo file in filesAndDirs)
             {
                 // System.IO doesn't return aliases like "." or ".." for any GetXXX calls
                 //  so we don't need code to exclude them
-                Object r = Dir_Walk_CB_Def(file.FullName, fileFunc, dirFunc);
+                object r = Dir_Walk_CB_Def(file.FullName, fileFunc, dirFunc);
                 if (r != null)
                     results.Add(r);
             }
@@ -206,16 +208,13 @@ class Chapter1_5
         Console.WriteLine();
 
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Simple w/ sizes ---------------");
-        // Format specifier N0 displays numbers with comma seperators (different than in the book, but easier to read)
-        //   Use a width of 13 to accomodate sizes up to about 10 Gigabytes, e.g. 9,999,999,999
-        Dir_Walk_Simple(path, (x) => Console.WriteLine("{0,13:N0} {1}", PerlFileOps.Size(x), x));
+        Dir_Walk_Simple(path, (x) => Console.WriteLine(DirOrFileSizeFormat, PerlFileOps.Size(x), x));
         Console.WriteLine();
 
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Simple that displays Broken Links/Shortcuts ---------------");
         Dir_Walk_Simple(path, (x) =>
         {
-            string target;
-            if (PerlFileOps.Link(x, out target) && !PerlFileOps.Exists(target))    // -l && -e
+            if (PerlFileOps.Link(x, out string target) && !PerlFileOps.Exists(target))    // -l && -e
                 Console.WriteLine("'{0}' => '{1}'", x, target);
         });
         Console.WriteLine();
@@ -244,7 +243,7 @@ class Chapter1_5
     public static void Demo_Dir_Walk_Sizehash(string path)
     {
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_Sizehash  ---------------");
-        List<Object> a = (List<Object>)Dir_Walk_CB(path, File, Dir);
+        List<object> a = (List<object>)Dir_Walk_CB(path, File, Dir);
         Console.WriteLine("Top directory = {0}", (string)a[0]);
         Console.WriteLine();
 
@@ -267,24 +266,24 @@ class Chapter1_5
         Console.WriteLine();
 
         Console.WriteLine("\n--------------- Chapter 1.5 Dir_Walk_CB_Def, return list of files ---------------");
-        List<Object> allPlainFiles = (List<Object>)Dir_Walk_CB_Def(path, (x) => { return x; },
+        List<object> allPlainFiles = (List<object>)Dir_Walk_CB_Def(path, (x) => { return x; },
             (x, result) => 
             {
-                // result is a List<Object> that contains a string (with the filename) for each file in the directory and a 
-                //      List<Object> of strings of filenames for each directory in the directory
-                // We need to explicitly flatten these into a single List<Object> of strings to pass up to our parent directory
+                // result is a List<object> that contains a string (with the filename) for each file in the directory and a 
+                //      List<object> of strings of filenames for each directory in the directory
+                // We need to explicitly flatten these into a single List<object> of strings to pass up to our parent directory
                 //      since C# doesn't have Perl's parameter stack manipulation and implicit array insertion
                 int length = result.Count;
                 int i = 0;
                 for (int count = 1; count <= length; count++)
                 {
-                    Object o = result[i];
-                    if (o is List<Object>)
+                    object o = result[i];
+                    if (o is List<object>)
                     {
                         // Insert list of strings into main list
                         result.RemoveAt(i);
-                        result.InsertRange(i, ((List<Object>)o));
-                        i += ((List<Object>)o).Count;
+                        result.InsertRange(i, ((List<object>)o));
+                        i += ((List<object>)o).Count;
                     }
                     else
                     {

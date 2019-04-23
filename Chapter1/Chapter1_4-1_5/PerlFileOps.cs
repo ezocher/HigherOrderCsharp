@@ -9,7 +9,7 @@ using System;
 using System.IO;
 
 
-// Implementation of Perl file operators
+// Implementation of Perl file operators -d -e -f -l -s
 class PerlFileOps
 {
     // Implement an equivalent of the Perl -s file operator (Size of a file or directory)
@@ -46,7 +46,7 @@ class PerlFileOps
     // The code at the link above no longer works
     //  The GetShell32NameSpaceFolder method below is necessary on Windows 8 and up
     //      See: https://social.msdn.microsoft.com/Forums/vstudio/en-US/b25e2b8f-141a-4a1c-a73c-1cb92f953b2b/instantiate-shell32shell-object-in-windows-8?forum=clr
-    private static Shell32.Folder GetShell32NameSpaceFolder(Object folder)
+    private static Shell32.Folder GetShell32NameSpaceFolder(object folder)
     {
         Type shellAppType = Type.GetTypeFromProgID("Shell.Application");
 

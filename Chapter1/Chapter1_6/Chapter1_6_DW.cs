@@ -32,11 +32,11 @@ public class PrintAll : DirectoryWalker
 // Duplicates functionality of printing out filenames with sizes on page 19
 public class PrintWithSizes : DirectoryWalker
 {
+    private const string DirOrFileSizeMaxWrite = "99,999,999,999";       // Dirs or files up to almost 100 GB
+    private static readonly string DirOrFileSizeFormat = "{0," + DirOrFileSizeMaxWrite.Length + ":N0} {1}";
     public override void FileOrDirectory(string path)
     {
-        // Format specifier N0 displays numbers with comma seperators
-        //   Use a width of 13 to accomodate sizes up to about 10 Gigabytes, e.g. 9,999,999,999
-        Console.WriteLine("{0,13:N0} {1}", PerlFileOps.Size(path), path);
+        Console.WriteLine(DirOrFileSizeFormat, PerlFileOps.Size(path), path);
     }
 
 
