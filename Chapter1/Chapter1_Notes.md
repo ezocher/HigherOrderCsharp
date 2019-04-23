@@ -1,7 +1,7 @@
 # Chapter 1 Notes
 
 ## .NET Core versus .NET Framework
-* Sections 1.1 through 1.3 are built on .NET Core 2.1
+* Sections 1.1 through 1.3, and 1.7 are built on .NET Core 2.1
 * Sections 1.4 through 1.6 are built on .NET Framework 4.7.2 because they need to use Shell32 COM interop to access file system shortcuts/links. COM interop is not yet available in .NET Core 2.1 
 ## Section 1.6 - Functional versus object-oriented programming
 There is no code in section 1.6, but the book describes an analogous object-oriented approach to implementing dir_walk in C++ using an abstract base class and and two virtual methods.
@@ -30,8 +30,18 @@ This class is used for the samples that need to accumulate results and process t
 
 The sample classes that inherit from DirectoryWalkerAccumulator are in Chapter1_6_DWAccumulator.cs.
 
-## Background information for section 1.??
-Some resources for background information about topics in Chapter 1
+## Section 1.7 - HTML
+### Selecting an HTML parsing library
+The book uses the HTML::TreeBuilder Perl library to parse HTML.
+
+After some quick research I found the two major HTML parsing libraries for .NET: [HTML Agility Pack](https://html-agility-pack.net/) and [AngleSharp](https://github.com/AngleSharp/AngleSharp). I've chosen AngleSharp because it seems to be the most up to date of the two in terms of parsing support for standard web formats and support for .NET Standard (and the project is also on GitHub).
+### AngleSharp
+- AngleSharp: https://github.com/AngleSharp/AngleSharp
+- Documentation: https://github.com/AngleSharp/AngleSharp/blob/master/doc/index.md
+
+
+## Background information for upcoming chapters/sections
+Some resources for background information about upcoming topics
 
 Memoization:
 - https://spin.atomicobject.com/2011/10/27/generic-memoization-in-c/
@@ -43,7 +53,7 @@ Aspect-oriented programming:
 - https://msdn.microsoft.com/en-us/magazine/dn574804.aspx?f=255&MSPPError=-2147217396
 
 Dependency injection:
-- ??
+- *TODO*
 
 
 
