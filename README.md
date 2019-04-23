@@ -5,9 +5,11 @@
 
 This project is a C# implementation of the programs in the book that I'm doing to improve and update my C# skills and knowledge. I think I'll need to learn many features of C# 6 and 7 and maybe Roslyn to duplicate all of the code in the book.
 
-The book follows the classic form of code interspersed with explanations and I'm re-writing all the code in C# (line for line where possible) and adding any necessary C# explanations in comments. 
+The book follows the classic form of code interspersed with explanations. I'm re-writing all the code in C# (line for line where possible) and adding big picture explanations in a notes file in each chapter folder (e.g. [Chapter1_Notes.md](Chapter1/Chapter1_Notes.md)) and detailed explanations in code comments. 
 
-If you want to follow along you can download the book for free from [this page](https://hop.perl.plover.com/). Mark's explanations of the techniques and their benefits are very language-independent and timeless, so read the book, and when you come to some Perl code then look at this project for the C# version.
+> If you want to follow along you can download the book for free from [this page](https://hop.perl.plover.com/).
+
+Mark's explanations of the techniques and their benefits are very language-independent and timeless, so read the book, and when you come to some Perl code then look at this project for the C# version.
 
 ## Project Structure
 * There is one folder per book chapter containing one VS solution file per chapter, e.g. the Chapter1 folder contains Chapter1.sln
@@ -22,6 +24,6 @@ If you want to follow along you can download the book for free from [this page](
 - [x] Section 1.4
 - [x] Section 1.5
 - [x] Section 1.6
-- [ ] Section 1.7
+- [ ] Section 1.7 (started)
 - [ ] Section 1.8
 - [ ] Chapter 2, Section 2.1
