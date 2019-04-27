@@ -6,8 +6,6 @@
  *
  */
 
-
-
 using System;
 using AngleSharp.Html.Dom; // NuGet package
 using AngleSharp.Html.Parser;
@@ -18,7 +16,7 @@ public class Chapter1_7
     public static IHtmlDocument FirstParse()
     {
         var parser = new HtmlParser();
-        IHtmlDocument tree = parser.ParseDocument(HTMLSamples.Simple_Page26);
+        IHtmlDocument tree = parser.ParseDocument(HTMLSamples.DocumentEmptyHeader+HTMLSamples.Simple_Page26+HTMLSamples.DocumentClosingTags);
         return tree;
     }
 
@@ -34,34 +32,11 @@ public class Chapter1_7
             Console.WriteLine($"{element.GetType()} = '{element.TextContent}'\n");
         }
         Console.WriteLine("--------");
-        var elements = tree.QuerySelectorAll("font");
-        Console.WriteLine($"Number of font tags = {elements.Length}");
+        string selector = "meta";
+        var elements = tree.QuerySelectorAll(selector);
+        Console.WriteLine($"Number of '{selector}' tags = {elements.Length}");
 
-    }
+     }
 
-
-}
-
-public class HTMLSamples
-{
-    public const string EmptyHeader = @"
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title></title> 
-</head> 
-<body>
-";
-
-    public const string EmptyFooter = @"
-</body> 
-</html>
-";
-
-    public const string Simple_Page26 = @"
-<h1>What Junior Said Next</h1>
-
-<p>But I don't <font size=3 color=""red"">want</font>
-to go to bed now</p>";
 
 }
