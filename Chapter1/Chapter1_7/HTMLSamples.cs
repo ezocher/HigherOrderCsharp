@@ -12,7 +12,7 @@ using AngleSharp.Html.Parser;
 
 public class HTMLSamples
 {
-    public const string DocumentEmptyHeader = @"
+    const string DocumentEmptyHeader = @"
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -21,7 +21,7 @@ public class HTMLSamples
 <body>
 ";
 
-    public const string DocumentClosingTags = @"
+    const string DocumentClosingTags = @"
 </body> 
 </html>
 ";
@@ -32,4 +32,8 @@ public class HTMLSamples
 <p>But I don't <font size=3 color=""red"">want</font>
 to go to bed now</p>";
 
+    public static string EncloseInHeaderFooter(string htmlBody)
+    {
+        return DocumentEmptyHeader + htmlBody + DocumentClosingTags;
+    }
 }

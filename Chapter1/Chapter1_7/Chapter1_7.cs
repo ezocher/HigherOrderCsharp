@@ -16,23 +16,28 @@ public class Chapter1_7
     public static IHtmlDocument FirstParse()
     {
         var parser = new HtmlParser();
-        IHtmlDocument tree = parser.ParseDocument(HTMLSamples.DocumentEmptyHeader+HTMLSamples.Simple_Page26+HTMLSamples.DocumentClosingTags);
+        IHtmlDocument tree = parser.ParseDocument(HTMLSamples.EncloseInHeaderFooter(HTMLSamples.Simple_Page26));
         return tree;
     }
 
     public static void Demo_First_Parse()
     {
-        Console.WriteLine("\n--------------- Chapter 1.7 First parse ---------------");
+        Console.WriteLine("\n--------------- Chapter 1.7 First parse ---------------\n");
 
         var tree = FirstParse();
+
+        Console.WriteLine("-------- Outer HTML:");
         Console.WriteLine(tree.DocumentElement.OuterHtml);
-        Console.WriteLine("--------");
+        Console.WriteLine("--------\n");
+
+        Console.WriteLine("-------- Text Content of each element:");
         foreach (var element in tree.All)
         {
             Console.WriteLine($"{element.GetType()} = '{element.TextContent}'\n");
         }
-        Console.WriteLine("--------");
-        string selector = "meta";
+        Console.WriteLine("--------\n");
+
+        string selector = "body";
         var elements = tree.QuerySelectorAll(selector);
         Console.WriteLine($"Number of '{selector}' tags = {elements.Length}");
 
