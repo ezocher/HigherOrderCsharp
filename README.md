@@ -1,5 +1,5 @@
 # ezocher / HigherOrderCsharp
-![Book cover: Higher Order Perl by Mark Jason Dominus](http://hop.perl.plover.com/cover-med.jpg)
+![Book cover: Higher Order Perl by Mark Jason Dominus](http://hop.perl.plover.com/cover-med.jpg) ![Arrow pointing to C# logo](Images/Arrow-To-Csharp.png)
 
 [Mark Jason Dominus](https://blog.plover.com/) authored a classic book about functional programming and other advanced techniques in Perl 5 called [Higher Order Perl: Transforming Programs with Programs](https://hop.perl.plover.com/). I bought the book when it came out in 2005 and recently opened it back up after many years away from Perl. The book is [still in print](https://www.amazon.com/Higher-Order-Perl-Transforming-Programs/dp/1558607013/) and Mark has graciously posted the full book for [free download here](https://hop.perl.plover.com/).
 
